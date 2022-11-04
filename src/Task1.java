@@ -23,8 +23,7 @@ public class Task1 {
     }
 
     public static boolean profitableGamble(double prob, double prize, double pay){
-        if (prob * prize > pay) return true;
-        else return false;
+        return prob * prize > pay;
     }
 
     public static String operation(int n, int a, int b){
