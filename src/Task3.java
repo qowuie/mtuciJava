@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Task3 {
@@ -9,7 +6,7 @@ public class Task3 {
         System.out.println(solutions(1, 0, -1));
         System.out.println(solutions(1, 0, 0));
         System.out.println(solutions(1, 0, 1));
-        System.out.println(findZip("-zip--zip"));
+        System.out.println(findZip("---zipzip"));
         System.out.println(checkPerfect(6));
         System.out.println(flipEndChars("caff."));
         System.out.println(isValidHexCode("#01H11F"));
@@ -17,7 +14,7 @@ public class Task3 {
         System.out.println(isKaprekar(297));
         System.out.println(longest("00000"));
         System.out.println(nextPrime(11));
-        System.out.println(rightTriangle(70, 30, 110));
+        System.out.println(rightTriangle(145, 105, 100));
 
     }
 
@@ -29,14 +26,7 @@ public class Task3 {
     }
 
     static int findZip(String str){
-        int num = 0;
-        for (int i = 0; i < str.length(); i++) {
-            if (i + 2 < str.length() && str.charAt(i) == 'z' && str.charAt(i + 1) == 'i' && str.charAt(i + 2) == 'p') {
-                num++;
-                if (num == 2) return i;
-            }
-        }
-        return -1;
+        return str.indexOf("zip", str.indexOf("zip") + 1);
     }
 
     static boolean checkPerfect(int a){
@@ -50,8 +40,7 @@ public class Task3 {
     static String flipEndChars(String str){
         if(str.length() < 2) return "Несовместимо";
         if(str.charAt(0) == str.charAt(str.length() - 1)) return "Два это пара";
-        String result = str.charAt(str.length() - 1) + str.substring(1, str.length() - 1) + str.charAt(0);
-        return result;
+        return str.charAt(str.length() - 1) + str.substring(1, str.length() - 1) + str.charAt(0);
     }
 
     static boolean isValidHexCode(String str){
@@ -66,8 +55,10 @@ public class Task3 {
     }
 
     static boolean same(int[] arr1, int[] arr2){
-        Set<Integer> set1 = Arrays.stream(arr1).boxed().collect(Collectors.toSet());
-        Set<Integer> set2 = Arrays.stream(arr2).boxed().collect(Collectors.toSet());
+        HashSet<Integer> set1 = new HashSet<>();
+        HashSet<Integer> set2 = new HashSet<>();
+        for (int j : arr1) set1.add(j);
+        for (int i : arr2) set2.add(i);
 
         return set1.size() == set2.size();
 
