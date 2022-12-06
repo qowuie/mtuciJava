@@ -18,6 +18,7 @@ public class Task5 {
         System.out.println(sumDigProd(1, 2, 3, 4, 5, 6));
         System.out.println(canComplete("pir", "privet"));
         System.out.println(canMove("ферзь", "C1", "C8"));
+        System.out.println(getSha256Hash("privet"));
         System.out.println(Arrays.toString(encrypt("Hello")));
         System.out.println(decrypt(encrypt("Hellkdlfmv..o")));
 
@@ -146,6 +147,26 @@ public class Task5 {
         }
         if (num < 999) return ones[Integer.parseInt(String.valueOf(String.valueOf(num).charAt(0)))] + " hundred " + numToEng(Integer.parseInt(String.valueOf(num).substring(1)));
         return "";
+    }
+    
+    private static String getSha256Hash(String s) {
+    try {
+    // шифруем в байты строку через MessageDigest
+        MessageDigest digest = MessageDigest.getInstance("SHA-256");
+        byte[] hash = digest.digest(s.getBytes(StandardCharsets.UTF_8));
+    // переводим байты в хеш
+        StringBuilder hexString = new StringBuilder();
+        for (byte b : hash) {
+            String hex = Integer.toHexString(0xff & b);
+            if (hex.length() == 1) {
+                hexString.append('0');
+            }
+            hexString.append(hex);
+        }
+        return hexString.toString();
+    } catch (Exception e) {
+            return null;
+        }
     }
 
     static String correctTitle(String s){
