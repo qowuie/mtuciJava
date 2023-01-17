@@ -4,7 +4,7 @@ import java.util.HashSet;
 
 public class Task4 {
     public static void main(String[] args) {
-        bessy(10, 7, "hello my name is Bessey and this is my ess");
+        bessy(10, 7, "hello my name is Bessey and this is my essay");
         System.out.println(Arrays.toString(bracket("((()))()()()((()))(()())()")));
         System.out.println(toCamelCase("get_color"));
         System.out.println(toSnakeCase("getColor"));
@@ -22,7 +22,7 @@ public class Task4 {
         String result = "";
         int len = 0; // количество именно букв
         for (String i : words) {
-            if (k - len >= i.length()) {
+            if (k - len >= i.length()) { // если осталось символов в строке больше чем длина слова, то можно записать это слово
                 result += i + " ";
                 len += i.length();
             } else {
@@ -76,7 +76,6 @@ public class Task4 {
         double bet = args[2];
         double x = args[3];
         String result;
-
 
         if (finish > 17) {
             double under = 17 - start;
@@ -182,10 +181,13 @@ public class Task4 {
         boolean flag = false;
         HashSet<Character> count = new HashSet<>();
         for (int i = 0; i < s.length(); i++){
-            if (s.charAt(i) == ch) flag = !flag;
+            if (s.charAt(i) == ch){
+                flag = !flag;
+                continue;
+            }
             if (flag) count.add(s.charAt(i));
         }
-        return count.size() - 1;
+        return count.size();
     }
 
 }
